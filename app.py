@@ -248,11 +248,11 @@ def profile(user_id):
         return render_template("/users/edit.html", form=form)
 
 
-@app.route('/users/delete', methods=["POST"])
-def delete_user():
+@app.route('/users/<int:id>/delete', methods=["POST"])
+def delete_user(id):
     """Delete user."""
 
-    if not g.user or not g.user.id == user_id:
+    if not g.user or not g.user.id == id:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
